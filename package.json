@@ -10,12 +10,12 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/OpenScienceTechnology/quarto-outliner"
+    "url": "https://github.com/grasshoff/quarto-outliner"
   },
   "bugs": {
-    "url": "https://github.com/OpenScienceTechnology/quarto-outliner/issues"
+    "url": "https://github.com/grasshoff/quarto-outliner/issues"
   },
-  "homepage": "https://github.com/OpenScienceTechnology/quarto-outliner#readme",
+  "homepage": "https://github.com/grasshoff/quarto-outliner#readme",
   "keywords": [
     "quarto",
     "markdown",
