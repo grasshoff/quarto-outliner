@@ -1,0 +1,25 @@
+---     
+title: "Test Quarto Document"
+author: "Your Name"
+format: html
+---
+
+# Introduction
+This is an introduction to the document. You can fold this section with Tab!
+
+### Data Collection
+Details about how data was collected.
+# Results
+Main findings of the study.
+## Methods
+Description of the methods used in the study.
+## Results4
+Main findings of the study.
+## Results2
+# Discussion
+
+Interpretation of results and implications.
+# Conclusion
+
+Summary and final thoughts.
+

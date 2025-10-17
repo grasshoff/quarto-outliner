@@ -1,0 +1,224 @@
+{
+  "name": "Org",
+  "scopeName": "source.org",
+  "patterns": [
+    { "include": "#headlines" },
+    { "include": "#keywords" },
+    { "include": "#timestamps" },
+    { "include": "#lists" },
+    { "include": "#markup" },
+    { "include": "#links" },
+    { "include": "#code-blocks" },
+    { "include": "#tables" },
+    { "include": "#comments" },
+    { "include": "#properties" },
+    { "include": "#drawers" },
+    { "include": "#tags" },
+    { "include": "#priorities" }
+  ],
+  "repository": {
+    "headlines": {
+      "patterns": [
+        {
+          "match": "^(\\*+)\\s+(TODO|DONE|NEXT|WAITING|HOLD|CANCELLED|CANCELED)?\\s*(\\[#[A-Z]\\])?\\s*(.+?)\\s*(:[\\w:@]+:)?\\s*$",
+          "captures": {
+            "1": { "name": "markup.heading.org punctuation.definition.heading.org" },
+            "2": { "name": "keyword.control.org" },
+            "3": { "name": "constant.numeric.priority.org" },
+            "4": { "name": "entity.name.section.org" },
+            "5": { "name": "meta.tag.org" }
+          }
+        }
+      ]
+    },
+    "keywords": {
+      "patterns": [
+        {
+          "match": "^#\\+(TITLE|AUTHOR|DATE|EMAIL|DESCRIPTION|KEYWORDS|LANGUAGE|OPTIONS|STARTUP|TODO|SEQ_TODO|TAGS|FILETAGS|ARCHIVE|CATEGORY|PROPERTY|COLUMNS|LINK|PRIORITIES):",
+          "name": "keyword.other.org"
+        },
+        {
+          "match": "^#\\+(BEGIN_[A-Z]+|END_[A-Z]+)",
+          "name": "keyword.control.org"
+        }
+      ]
+    },
+    "timestamps": {
+      "patterns": [
+        {
+          "match": "<\\d{4}-\\d{2}-\\d{2}( [A-Za-z]{3})?( \\d{2}:\\d{2})?( [\\+\\.]{1,2}\\d+[hdwmy])?( -?-?\\d+[hdwmy])?>",
+          "name": "constant.other.timestamp.org"
+        },
+        {
+          "match": "\\[\\d{4}-\\d{2}-\\d{2}( [A-Za-z]{3})?( \\d{2}:\\d{2})?\\]",
+          "name": "constant.other.timestamp.inactive.org"
+        },
+        {
+          "match": "(SCHEDULED|DEADLINE|CLOSED):",
+          "name": "keyword.other.timestamp.org"
+        }
+      ]
+    },
+    "lists": {
+      "patterns": [
+        {
+          "match": "^\\s*([\\-\\+]|\\d+[\\.\\)]|\\d+\\))\\s+(\\[ \\]|\\[X\\]|\\[-\\])?",
+          "captures": {
+            "1": { "name": "markup.list.unnumbered.org" },
+            "2": { "name": "keyword.control.checkbox.org" }
+          }
+        }
+      ]
+    },
+    "markup": {
+      "patterns": [
+        {
+          "match": "\\*[^\\s\\*][^\\*]*[^\\s\\*]\\*",
+          "name": "markup.bold.org"
+        },
+        {
+          "match": "/[^\\s/][^/]*/[^/]/",
+          "name": "markup.italic.org"
+        },
+        {
+          "match": "_[^\\s_][^_]*[^\\s_]_",
+          "name": "markup.underline.org"
+        },
+        {
+          "match": "=[^\\s=][^=]*[^\\s=]=",
+          "name": "markup.inline.code.org"
+        },
+        {
+          "match": "~[^\\s~][^~]*[^\\s~]~",
+          "name": "markup.inline.verbatim.org"
+        },
+        {
+          "match": "\\+[^\\s\\+][^\\+]*[^\\s\\+]\\+",
+          "name": "markup.strikethrough.org"
+        }
+      ]
+    },
+    "links": {
+      "patterns": [
+        {
+          "match": "\\[\\[([^\\]]+)\\]\\[([^\\]]+)\\]\\]",
+          "captures": {
+            "1": { "name": "string.other.link.org" },
+            "2": { "name": "string.other.link.description.org" }
+          }
+        },
+        {
+          "match": "\\[\\[([^\\]]+)\\]\\]",
+          "captures": {
+            "1": { "name": "string.other.link.org" }
+          }
+        },
+        {
+          "match": "https?://[^\\s]+",
+          "name": "string.other.link.org"
+        }
+      ]
+    },
+    "code-blocks": {
+      "patterns": [
+        {
+          "begin": "^#\\+BEGIN_SRC(\\s+\\w+)?",
+          "end": "^#\\+END_SRC",
+          "beginCaptures": {
+            "0": { "name": "keyword.control.org" },
+            "1": { "name": "entity.name.function.org" }
+          },
+          "endCaptures": {
+            "0": { "name": "keyword.control.org" }
+          },
+          "contentName": "meta.embedded.block.org"
+        },
+        {
+          "begin": "^#\\+BEGIN_EXAMPLE",
+          "end": "^#\\+END_EXAMPLE",
+          "beginCaptures": { "0": { "name": "keyword.control.org" } },
+          "endCaptures": { "0": { "name": "keyword.control.org" } },
+          "contentName": "markup.raw.block.org"
+        },
+        {
+          "match": "^#\\+RESULTS:",
+          "name": "keyword.other.org"
+        }
+      ]
+    },
+    "tables": {
+      "patterns": [
+        {
+          "match": "^\\s*\\|.*\\|\\s*$",
+          "name": "markup.table.org"
+        },
+        {
+          "match": "^\\s*\\|[-\\+]+\\|\\s*$",
+          "name": "markup.table.separator.org"
+        }
+      ]
+    },
+    "comments": {
+      "patterns": [
+        {
+          "match": "^#(?!\\+).*$",
+          "name": "comment.line.org"
+        }
+      ]
+    },
+    "properties": {
+      "patterns": [
+        {
+          "begin": "^\\s*:PROPERTIES:\\s*$",
+          "end": "^\\s*:END:\\s*$",
+          "beginCaptures": { "0": { "name": "keyword.control.org" } },
+          "endCaptures": { "0": { "name": "keyword.control.org" } },
+          "patterns": [
+            {
+              "match": "^\\s*:([^:]+):\\s*(.*)$",
+              "captures": {
+                "1": { "name": "variable.other.property.org" },
+                "2": { "name": "string.unquoted.org" }
+              }
+            }
+          ]
+        }
+      ]
+    },
+    "drawers": {
+      "patterns": [
+        {
+          "begin": "^\\s*:LOGBOOK:\\s*$",
+          "end": "^\\s*:END:\\s*$",
+          "beginCaptures": { "0": { "name": "keyword.control.org" } },
+          "endCaptures": { "0": { "name": "keyword.control.org" } },
+          "contentName": "meta.drawer.logbook.org"
+        },
+        {
+          "begin": "^\\s*:[A-Z]+:\\s*$",
+          "end": "^\\s*:END:\\s*$",
+          "beginCaptures": { "0": { "name": "keyword.control.org" } },
+          "endCaptures": { "0": { "name": "keyword.control.org" } },
+          "contentName": "meta.drawer.org"
+        }
+      ]
+    },
+    "tags": {
+      "patterns": [
+        {
+          "match": ":[\\w@]+:",
+          "name": "meta.tag.org"
+        }
+      ]
+    },
+    "priorities": {
+      "patterns": [
+        {
+          "match": "\\[#[A-Z]\\]",
+          "name": "constant.numeric.priority.org"
+        }
+      ]
+    }
+  }
+}
+

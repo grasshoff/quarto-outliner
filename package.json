@@ -1,0 +1,219 @@
+{
+  "name": "quarto-outliner",
+  "displayName": "Quarto Outliner",
+  "description": "Powerful outline navigation and intelligent folding for Quarto and Markdown files with interactive tree view",
+  "version": "1.0.0",
+  "publisher": "opensciencetechnology",
+  "author": {
+    "name": "OpenScienceTechnology"
+  },
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/OpenScienceTechnology/quarto-outliner"
+  },
+  "bugs": {
+    "url": "https://github.com/OpenScienceTechnology/quarto-outliner/issues"
+  },
+  "homepage": "https://github.com/OpenScienceTechnology/quarto-outliner#readme",
+  "keywords": [
+    "quarto",
+    "markdown",
+    "outline",
+    "folding",
+    "navigation",
+    "org-mode",
+    "tree view",
+    "document structure",
+    "academic writing",
+    "scientific writing"
+  ],
+  "engines": {
+    "vscode": "^1.80.0"
+  },
+  "categories": [
+    "Programming Languages",
+    "Formatters",
+    "Other"
+  ],
+  "icon": "icon.png",
+  "activationEvents": [
+    "onStartupFinished"
+  ],
+  "main": "./out/src/extension.js",
+  "contributes": {
+    "languages": [
+      {
+        "id": "quarto",
+        "extensions": [".qmd"],
+        "aliases": ["Quarto", "quarto"],
+        "configuration": "./language-configuration.json"
+      }
+    ],
+    "grammars": [
+      {
+        "language": "quarto",
+        "scopeName": "text.html.markdown.quarto",
+        "path": "./syntaxes/org.tmLanguage.json"
+      }
+    ],
+    "commands": [
+      {
+        "command": "quarto.moveHeadlineUp",
+        "title": "Quarto: Move Headline Up"
+      },
+      {
+        "command": "quarto.moveHeadlineDown",
+        "title": "Quarto: Move Headline Down"
+      },
+      {
+        "command": "quarto.promoteHeadline",
+        "title": "Quarto: Promote Headline"
+      },
+      {
+        "command": "quarto.demoteHeadline",
+        "title": "Quarto: Demote Headline"
+      },
+      {
+        "command": "quarto.copyHeadline",
+        "title": "Quarto: Copy Headline"
+      },
+      {
+        "command": "quarto.cutHeadline",
+        "title": "Quarto: Cut Headline"
+      },
+      {
+        "command": "quarto.deleteHeadline",
+        "title": "Quarto: Delete Headline"
+      },
+      {
+        "command": "quarto.cycleFolding",
+        "title": "Quarto: Cycle Folding"
+      },
+      {
+        "command": "quarto.foldAll",
+        "title": "Quarto: Fold All"
+      },
+      {
+        "command": "quarto.unfoldAll",
+        "title": "Quarto: Unfold All"
+      },
+      {
+        "command": "quarto.openTreeView",
+        "title": "Quarto: Open Tree View",
+        "icon": "$(list-tree)"
+      }
+    ],
+    "views": {
+      "explorer": [
+        {
+          "type": "webview",
+          "id": "quartoOutliner.treeView",
+          "name": "Quarto Outline",
+          "contextualTitle": "Quarto Document Outline"
+        }
+      ]
+    },
+    "viewsWelcome": [
+      {
+        "view": "quartoOutliner.treeView",
+        "contents": "Open a Quarto (.qmd) or Markdown (.md) file to see the document outline.\n[Open File](command:workbench.action.files.openFile)"
+      }
+    ],
+    "keybindings": [
+      {
+        "command": "quarto.cycleFolding",
+        "key": "tab",
+        "mac": "tab",
+        "when": "editorTextFocus && !editorReadonly && !editorTabMovesFocus && !hasOtherSuggestions && !hasSnippetCompletions && !inSnippetMode && !suggestWidgetVisible && (editorLangId == 'markdown' || editorLangId == 'quarto')"
+      },
+      {
+        "command": "quarto.cycleFolding",
+        "key": "cmd+shift+,",
+        "mac": "cmd+shift+,",
+        "when": "editorTextFocus && (editorLangId == 'markdown' || editorLangId == 'quarto')"
+      },
+      {
+        "command": "quarto.moveHeadlineUp",
+        "key": "alt+shift+up",
+        "mac": "alt+shift+up",
+        "when": "editorLangId == markdown || editorLangId == quarto"
+      },
+      {
+        "command": "quarto.moveHeadlineDown",
+        "key": "alt+shift+down",
+        "mac": "alt+shift+down",
+        "when": "editorLangId == markdown || editorLangId == quarto"
+      },
+      {
+        "command": "quarto.promoteHeadline",
+        "key": "cmd+shift+left",
+        "mac": "cmd+shift+left",
+        "when": "editorLangId == markdown || editorLangId == quarto"
+      },
+      {
+        "command": "quarto.demoteHeadline",
+        "key": "cmd+shift+right",
+        "mac": "cmd+shift+right",
+        "when": "editorLangId == markdown || editorLangId == quarto"
+      },
+      {
+        "command": "quarto.copyHeadline",
+        "key": "alt+shift+c",
+        "mac": "alt+shift+c",
+        "when": "editorLangId == markdown || editorLangId == quarto"
+      },
+      {
+        "command": "quarto.cutHeadline",
+        "key": "alt+shift+x",
+        "mac": "alt+shift+x",
+        "when": "editorLangId == markdown || editorLangId == quarto"
+      },
+      {
+        "command": "quarto.deleteHeadline",
+        "key": "alt+shift+d",
+        "mac": "alt+shift+d",
+        "when": "editorLangId == markdown || editorLangId == quarto"
+      },
+      {
+        "command": "quarto.foldAll",
+        "key": "ctrl+f1",
+        "mac": "cmd+f1",
+        "when": "editorLangId == markdown || editorLangId == quarto"
+      },
+      {
+        "command": "quarto.unfoldAll",
+        "key": "ctrl+f2",
+        "mac": "cmd+f2",
+        "when": "editorLangId == markdown || editorLangId == quarto"
+      },
+      {
+        "command": "quarto.openTreeView",
+        "key": "cmd+shift+t",
+        "mac": "cmd+shift+t",
+        "when": "editorLangId == markdown || editorLangId == quarto"
+      }
+    ]
+  },
+  "scripts": {
+    "vscode:prepublish": "npm run compile",
+    "compile": "tsc -p ./",
+    "watch": "tsc -watch -p ./",
+    "pretest": "npm run compile && npm run lint",
+    "lint": "eslint src --ext ts",
+    "test": "node ./out/test/runTest.js"
+  },
+  "devDependencies": {
+    "@types/vscode": "^1.80.0",
+    "@types/glob": "^8.1.0",
+    "@types/mocha": "^10.0.1",
+    "@types/node": "20.x",
+    "@typescript-eslint/eslint-plugin": "^6.4.1",
+    "@typescript-eslint/parser": "^6.4.1",
+    "eslint": "^8.47.0",
+    "glob": "^10.3.3",
+    "mocha": "^10.2.0",
+    "typescript": "^5.1.6",
+    "@vscode/test-electron": "^2.3.4"
+  }
+}
