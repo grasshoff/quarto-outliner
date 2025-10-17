@@ -2,7 +2,7 @@
   "name": "quarto-outliner",
   "displayName": "Quarto Outliner",
   "description": "Powerful outline navigation and intelligent folding for Quarto and Markdown files with interactive tree view",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "publisher": "opensciencetechnology",
   "author": {
     "name": "OpenScienceTechnology"

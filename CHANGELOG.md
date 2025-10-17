@@ -2,6 +2,15 @@
 
 All notable changes to the "Quarto Outliner" extension will be documented in this file.
 
+## [1.0.1] - 2025-01-17
+
+### Changed
+- **Cmd+F1 (Fold All)**: Now collapses all headings to level 1 only (shows level 1 headings, hides everything below)
+- **Cmd+F2 (Unfold All)**: Full expansion of all headings (unchanged behavior, but clarified)
+
+### Improved
+- Better control over document overview with level 1 folding
+
 ## [1.0.0] - 2025-01-17
 
 ### Added

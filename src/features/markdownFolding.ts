@@ -91,16 +91,50 @@ export class MarkdownFoldingCommands {
   }
 
   /**
-   * Fold all headlines at level
+   * Fold all headlines to level 1 (collapse all to top level)
    */
-  static async foldAll(level?: number): Promise<void> {
-    await vscode.commands.executeCommand('editor.foldAll');
+  static async foldAll(): Promise<void> {
+    const editor = vscode.window.activeTextEditor;
+    if (!editor) {
+      return;
+    }
+
+    const document = editor.document;
+    const docKey = document.uri.toString();
+    let tree = this.trees.get(docKey);
+    
+    if (!tree) {
+      tree = new OutlineTree(document);
+      this.trees.set(docKey, tree);
+    }
+
+    // First unfold everything
+    await vscode.commands.executeCommand('editor.unfoldAll');
+    await this.delay(100);
+
+    // Find all level 1 headings and fold them
+    const nodes = tree.getAllNodes();
+    for (const node of nodes) {
+      if (node.level === 1) {
+        const position = new vscode.Position(node.line, 0);
+        editor.selection = new vscode.Selection(position, position);
+        await vscode.commands.executeCommand('editor.fold');
+        await this.delay(50);
+      }
+    }
   }
 
   /**
-   * Unfold all headlines
+   * Unfold all headlines (full expansion)
    */
   static async unfoldAll(): Promise<void> {
     await vscode.commands.executeCommand('editor.unfoldAll');
+  }
+
+  /**
+   * Utility delay
+   */
+  private static delay(ms: number): Promise<void> {
+    return new Promise(resolve => setTimeout(resolve, ms));
   }
 }
