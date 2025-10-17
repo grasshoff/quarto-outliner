@@ -13,14 +13,17 @@ Brings the legendary Org-mode outlining experience to VS Code and Cursor, making
 
 ## ✨ Features
 
-### 📊 **Interactive Tree View**
+### 📊 **Interactive Tree View** (Always Included!)
 
-Navigate your document structure with an elegant, live-updating sidebar tree:
+Navigate your document structure with an elegant, live-updating sidebar tree that appears automatically in the Explorer panel:
 
 - **Instant navigation** - Click any heading to jump there immediately
 - **Visual hierarchy** - See your entire document structure at a glance  
-- **Smart synchronization** - Tree updates automatically as you edit
+- **Perfect synchronization** - Tree updates in real-time as you edit, always in sync with editor
 - **Expand/collapse** - Manage complex document hierarchies with ease
+- **Keyboard access** - Press `Cmd+Shift+T` to focus the tree view anytime
+
+The tree view shares the same document model as the folding system, so they work together seamlessly - click in the tree to navigate, use Tab on headings to fold, and watch them stay perfectly synchronized.
 
 ![Tree View Demo](https://via.placeholder.com/600x400/1e1e1e/ffffff?text=Tree+View+Demo)
 
